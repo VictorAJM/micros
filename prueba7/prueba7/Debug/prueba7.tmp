@@ -1,0 +1,64 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega16A"</DEVICE>
+ <WORKING_DIR>C:\Users\victor\Desktop\micros2\prueba7\prueba7\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m16Adef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m16adef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\Debug\prueba7.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>prueba7.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>prueba7.map</FILE>
+  <FILE>prueba7.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RESET><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>46</LINE></RESET>
+  <EXT_INT0><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>193</LINE></EXT_INT0>
+  <EXT_INT1><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>201</LINE></EXT_INT1>
+  <TIM2_COMP><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>209</LINE></TIM2_COMP>
+  <TIM2_OVF><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>217</LINE></TIM2_OVF>
+  <TIM1_CAPT><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>225</LINE></TIM1_CAPT>
+  <TIM1_COMPA><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>233</LINE></TIM1_COMPA>
+  <TIM1_COMPB><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>241</LINE></TIM1_COMPB>
+  <TIM1_OVF><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>249</LINE></TIM1_OVF>
+  <TIM0_OVF><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>257</LINE></TIM0_OVF>
+  <SPI_STC><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>264</LINE></SPI_STC>
+  <USART_RXC><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>272</LINE></USART_RXC>
+  <USART_UDRE><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>280</LINE></USART_UDRE>
+  <USART_TXC><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>288</LINE></USART_TXC>
+  <ADC_COMP><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>296</LINE></ADC_COMP>
+  <EE_RDY><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>304</LINE></EE_RDY>
+  <ANA_COMP><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>312</LINE></ANA_COMP>
+  <TWSI><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>320</LINE></TWSI>
+  <EXT_INT2><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>327</LINE></EXT_INT2>
+  <TIM0_COMP><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>186</LINE></TIM0_COMP>
+  <SPM_RDY><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>335</LINE></SPM_RDY>
+  <Musica><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>71</LINE></Musica>
+  <do><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>93</LINE></do>
+  <corchea><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>162</LINE></corchea>
+  <mi><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>107</LINE></mi>
+  <la><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>128</LINE></la>
+  <si><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>135</LINE></si>
+  <silencio><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>157</LINE></silencio>
+  <RE><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>100</LINE></RE>
+  <FA><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>114</LINE></FA>
+  <SOL><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>121</LINE></SOL>
+  <redonda><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>142</LINE></redonda>
+  <blanca><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>147</LINE></blanca>
+  <negra><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>152</LINE></negra>
+  <WGLOOP0><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>169</LINE></WGLOOP0>
+  <WGLOOP1><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>170</LINE></WGLOOP1>
+  <WGLOOP2><FILE>C:\Users\victor\Desktop\micros2\prueba7\prueba7\main.asm</FILE><LINE>171</LINE></WGLOOP2>
+ </LABELS>
+</ASSEMBLER_INFO>

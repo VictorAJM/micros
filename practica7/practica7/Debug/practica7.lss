@@ -1,0 +1,254 @@
+
+practica7.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000122  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000a2  00800060  00000122  00000196  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000238  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000268  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000030  00000000  00000000  000002a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000078f  00000000  00000000  000002d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000066d  00000000  00000000  00000a63  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000002dc  00000000  00000000  000010d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000044  00000000  00000000  000013ac  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000380  00000000  00000000  000013f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000001a3  00000000  00000000  00001770  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  00001913  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e2       	ldi	r30, 0x22	; 34
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 30       	cpi	r26, 0x02	; 2
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 77 00 	call	0xee	; 0xee <main>
+  7a:	0c 94 8f 00 	jmp	0x11e	; 0x11e <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <InitMusic>:
+
+void InitMusic()
+{
+	// Configure OC1B pin as output
+
+	DDRB = 0xFF;
+  82:	8f ef       	ldi	r24, 0xFF	; 255
+  84:	87 bb       	out	0x17, r24	; 23
+	PORTB = 0;
+  86:	18 ba       	out	0x18, r1	; 24
+// Configuración del Timer0 (para PWM)
+TCCR0 = 0b00011011;
+  88:	8b e1       	ldi	r24, 0x1B	; 27
+  8a:	83 bf       	out	0x33, r24	; 51
+  8c:	08 95       	ret
+
+0000008e <PlayMusic>:
+	Plays music.
+*/
+
+void PlayMusic( const int* pMusicNotes /** Pointer to table containing music data */,
+				uint8_t tempo /** paying tempo from 0 to 100. Higher value = slower playback*/ )
+{
+  8e:	dc 01       	movw	r26, r24
+	int duration;
+	int note;
+	int i;
+	uint16_t delay = tempo * 1000;
+
+	while( *pMusicNotes )
+  90:	26 c0       	rjmp	.+76     	; 0xde <PlayMusic+0x50>
+	{
+		note = *pMusicNotes;
+		pMusicNotes++;
+
+		duration = *pMusicNotes;
+  92:	12 96       	adiw	r26, 0x02	; 2
+  94:	6d 91       	ld	r22, X+
+  96:	7c 91       	ld	r23, X
+  98:	13 97       	sbiw	r26, 0x03	; 3
+		pMusicNotes++;
+  9a:	14 96       	adiw	r26, 0x04	; 4
+
+		if( p == note )
+  9c:	e1 30       	cpi	r30, 0x01	; 1
+  9e:	f1 05       	cpc	r31, r1
+  a0:	19 f0       	breq	.+6      	; 0xa8 <PlayMusic+0x1a>
+			
+		}
+		else
+		{
+			//not a pause, generate tone
+			TCCR0 = 0b00011011;
+  a2:	8b e1       	ldi	r24, 0x1B	; 27
+  a4:	83 bf       	out	0x33, r24	; 51
+			OCR0 = note;
+  a6:	ec bf       	out	0x3c, r30	; 60
+	Plays music.
+*/
+
+void PlayMusic( const int* pMusicNotes /** Pointer to table containing music data */,
+				uint8_t tempo /** paying tempo from 0 to 100. Higher value = slower playback*/ )
+{
+  a8:	40 e0       	ldi	r20, 0x00	; 0
+  aa:	50 e0       	ldi	r21, 0x00	; 0
+  ac:	0b c0       	rjmp	.+22     	; 0xc4 <PlayMusic+0x36>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ae:	2f e7       	ldi	r18, 0x7F	; 127
+  b0:	88 e3       	ldi	r24, 0x38	; 56
+  b2:	91 e0       	ldi	r25, 0x01	; 1
+  b4:	21 50       	subi	r18, 0x01	; 1
+  b6:	80 40       	sbci	r24, 0x00	; 0
+  b8:	90 40       	sbci	r25, 0x00	; 0
+  ba:	e1 f7       	brne	.-8      	; 0xb4 <PlayMusic+0x26>
+  bc:	00 c0       	rjmp	.+0      	; 0xbe <PlayMusic+0x30>
+  be:	00 00       	nop
+			//not a pause, generate tone
+			TCCR0 = 0b00011011;
+			OCR0 = note;
+		}
+
+		for (int i=0;i<duration/4;i++) _delay_ms(200); 
+  c0:	4f 5f       	subi	r20, 0xFF	; 255
+  c2:	5f 4f       	sbci	r21, 0xFF	; 255
+  c4:	9b 01       	movw	r18, r22
+  c6:	77 23       	and	r23, r23
+  c8:	14 f4       	brge	.+4      	; 0xce <PlayMusic+0x40>
+  ca:	2d 5f       	subi	r18, 0xFD	; 253
+  cc:	3f 4f       	sbci	r19, 0xFF	; 255
+  ce:	35 95       	asr	r19
+  d0:	27 95       	ror	r18
+  d2:	35 95       	asr	r19
+  d4:	27 95       	ror	r18
+  d6:	42 17       	cp	r20, r18
+  d8:	53 07       	cpc	r21, r19
+  da:	4c f3       	brlt	.-46     	; 0xae <PlayMusic+0x20>
+	int i;
+	uint16_t delay = tempo * 1000;
+
+	while( *pMusicNotes )
+	{
+		note = *pMusicNotes;
+  dc:	2e 2f       	mov	r18, r30
+	int duration;
+	int note;
+	int i;
+	uint16_t delay = tempo * 1000;
+
+	while( *pMusicNotes )
+  de:	ed 91       	ld	r30, X+
+  e0:	fc 91       	ld	r31, X
+  e2:	11 97       	sbiw	r26, 0x01	; 1
+  e4:	30 97       	sbiw	r30, 0x00	; 0
+  e6:	a9 f6       	brne	.-86     	; 0x92 <PlayMusic+0x4>
+		}
+
+		for (int i=0;i<duration/4;i++) _delay_ms(200); 
+
+	}
+				TCCR0 = 0;
+  e8:	13 be       	out	0x33, r1	; 51
+				OCR0 = note;
+  ea:	2c bf       	out	0x3c, r18	; 60
+  ec:	08 95       	ret
+
+000000ee <main>:
+
+
+
+main()
+{
+	InitMusic();
+  ee:	0e 94 41 00 	call	0x82	; 0x82 <InitMusic>
+	while(1)
+	{
+
+
+
+		PlayMusic( furelise, 20 );
+  f2:	64 e1       	ldi	r22, 0x14	; 20
+  f4:	80 e6       	ldi	r24, 0x60	; 96
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	0e 94 47 00 	call	0x8e	; 0x8e <PlayMusic>
+		for (int i=0;i<4;i++)
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+  fe:	90 e0       	ldi	r25, 0x00	; 0
+ 100:	0a c0       	rjmp	.+20     	; 0x116 <main+0x28>
+ 102:	2f e7       	ldi	r18, 0x7F	; 127
+ 104:	3a e1       	ldi	r19, 0x1A	; 26
+ 106:	46 e0       	ldi	r20, 0x06	; 6
+ 108:	21 50       	subi	r18, 0x01	; 1
+ 10a:	30 40       	sbci	r19, 0x00	; 0
+ 10c:	40 40       	sbci	r20, 0x00	; 0
+ 10e:	e1 f7       	brne	.-8      	; 0x108 <main+0x1a>
+ 110:	00 c0       	rjmp	.+0      	; 0x112 <main+0x24>
+ 112:	00 00       	nop
+ 114:	01 96       	adiw	r24, 0x01	; 1
+ 116:	84 30       	cpi	r24, 0x04	; 4
+ 118:	91 05       	cpc	r25, r1
+ 11a:	9c f3       	brlt	.-26     	; 0x102 <main+0x14>
+ 11c:	ea cf       	rjmp	.-44     	; 0xf2 <main+0x4>
+
+0000011e <_exit>:
+ 11e:	f8 94       	cli
+
+00000120 <__stop_program>:
+ 120:	ff cf       	rjmp	.-2      	; 0x120 <__stop_program>
