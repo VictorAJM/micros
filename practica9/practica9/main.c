@@ -12,7 +12,7 @@
 int ADC_Read(char channel)
 {
 
-    ADMUX =(ADMUX & 0xF8) | 7;
+
     
     // se inicia la conversión.
     ADCSRA |= (1 << ADSC);
@@ -20,11 +20,6 @@ int ADC_Read(char channel)
     // espera a que termina la conversión.
     while(ADCSRA & (1 << ADSC));
     
-    // regresamos el valor de la conversión.
-	DDRD = 0xFF;
-	int xd = ADC;
-	xd %= 256;
-	PORTD  = xd;
     return ADC;
 }
 int main(void)
