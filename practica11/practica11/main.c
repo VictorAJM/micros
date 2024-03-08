@@ -4,7 +4,7 @@
  * Created: 07/03/2024 02:59:07 p. m.
  * Author : victor
  */ 
-#define F_CPU 4000000UL
+#define F_CPU 1000000UL
 #include <stdlib.h>
 #include <avr/io.h>
 #include <util/delay.h>
@@ -13,6 +13,13 @@
 volatile int x=0;
 volatile int y=0;
 volatile float value;
+volatile int cnt=10;
+volatile int morethanasecond=0;
+volatile int s=0;
+volatile int h=0;
+volatile int m=0;
+volatile int last=0;
+volatile int gg=0;
 int ADC_Read(char channel)
 {
 
@@ -25,9 +32,51 @@ int ADC_Read(char channel)
 	while(ADCSRA & (1 << ADSC));
 	return ADC;
 }
+
+ISR(TIMER0_COMP_vect) {
+
+	cnt--;
+	if (cnt==0) {
+			DDRB = 0xFF;
+			PORTB = 0xFF;
+			s++;
+			gg++;
+		if (s==60) {
+			m++;
+			s=0;
+			if (m==60) {
+				h++;
+				m=0;
+			}
+		}
+			x=y=0;
+			lcd_gotoxy(0,0);
+			lcd_putc(h/10+'0');
+			y++;
+			lcd_putc(h%10+'0');
+			y++;
+			lcd_putc(':');
+			y++;
+			lcd_putc(m/10+'0');
+			y++;
+			lcd_putc(m%10+'0');
+			y++;
+			lcd_putc(':');
+			y++;
+			lcd_putc(s/10+'0');
+			y++;
+			lcd_putc(s%10+'0');
+			if (last+5 == gg) {
+				lcd_gotoxy(0,1);
+				lcd_puts("               ");
+			}
+		cnt=10;
+	}
+}
 ISR(INT0_vect) {
 	// interrupcion
 	value = ADC_Read(0);
+	last = gg;
 	lcd_gotoxy(0,1);
 	lcd_puts("Temp. ");
 	value = value* 70.0 /1023;
@@ -62,10 +111,13 @@ ISR(INT0_vect) {
 }
 int main(void)
 {
-	
+		TCNT0= 0;
+		TIMSK= 2;
+		OCR0= 97;
+		TCCR0= 0b00001101;
 	DDRD &= ~(1 << PD2);
 			DDRA=0x0;			/* Make ADC port as input */
-			ADCSRA = (1 << ADEN) | (1 << ADPS0) | (1 << ADPS2);
+			ADCSRA = (1 << ADEN) | (1 << ADPS0) | (1 << ADPS1);
 			ADMUX = 0x40;			/* Vref: Avcc, ADC channel: 0 */
 	lcd_init(LCD_DISP_ON);
 	PORTD = 0xFF;
@@ -76,8 +128,6 @@ int main(void)
 		GIFR = 0b11100000;
 		GICR = 0b01000000;
 		sei();
-		int h,m,s;
-		h=0; m=0; s=0;
 		x=y=0;
 		lcd_gotoxy(0,0);
 		lcd_putc(h/10+'0');
@@ -98,33 +148,6 @@ int main(void)
     while (1) 
     {
 		
-			_delay_ms(1000);
-		s++;
-		if (s==60) {
-			m++;
-			s=0;
-			if (m==60) {
-				h++;
-				m=0;
-			}
-		}
-		x=y=0;
-		lcd_gotoxy(0,0);
-		lcd_putc(h/10+'0');
-		y++;
-		lcd_putc(h%10+'0');
-		y++;
-		lcd_putc(':');
-		y++;
-		lcd_putc(m/10+'0');
-		y++;
-		lcd_putc(m%10+'0');
-		y++;
-		lcd_putc(':');
-		y++;
-		lcd_putc(s/10+'0');
-		y++;
-		lcd_putc(s%10+'0');
     }
 }
 
