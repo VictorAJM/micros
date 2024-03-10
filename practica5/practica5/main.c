@@ -26,7 +26,7 @@ void init() {
 	TCNT0= 0;
 	TIMSK= 2;
 	OCR0= 38;
-		TCCR0= 0b00001100;
+	TCCR0= 0b00001100;
 	sei();
 }
 
