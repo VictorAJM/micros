@@ -850,8 +850,8 @@ int main(void)
 	TIMSK= 2;
  548:	82 e0       	ldi	r24, 0x02	; 2
  54a:	89 bf       	out	0x39, r24	; 57
-	OCR0= 50;
- 54c:	82 e3       	ldi	r24, 0x32	; 50
+	OCR0= 150;
+ 54c:	86 e9       	ldi	r24, 0x96	; 150
  54e:	8c bf       	out	0x3c, r24	; 60
 	TCCR0= 0b00001101;
  550:	8d e0       	ldi	r24, 0x0D	; 13

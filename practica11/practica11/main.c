@@ -93,7 +93,7 @@ ISR(INT0_vect) {
 		dx*=-10.0;
 		int ddx = dx;
 		lcd_putc(ddx+'0');
-		lcd_puts(" C");
+		lcd_puts(" C ");
 		lcd_gotoxy(x,y);
 	} else {
 		lcd_putc(xd/10+'0');
@@ -104,7 +104,7 @@ ISR(INT0_vect) {
 		dx*=10;
 		int ddx = dx;
 		lcd_putc(ddx+'0');
-		lcd_puts(" C");
+		lcd_puts(" C ");
 		lcd_gotoxy(x,y);
 	}
 	return;

@@ -44,8 +44,13 @@ int main(void)
     /* Replace with your application code */
 	char R[4];
 		lcd_clrscr();
+		lcd_puts("0000");
 	do {
-		eeprom_read_block(R,0,strlen(R));
+		R[0] = eeprom_read_byte(0);
+		R[1] = eeprom_read_byte(1);
+		R[2] = eeprom_read_byte(2);
+		R[3] = eeprom_read_byte(3);
+
 		lcd_clrscr();
 		lcd_putc(R[0]); lcd_putc(R[1]); lcd_putc(R[2]); lcd_putc(R[3]);
 		uint8_t num = keyboard();
@@ -54,7 +59,10 @@ int main(void)
 		R[2] = R[1];
 		R[1] = R[0];
 		R[0] = num;
-		eeprom_write_block(R,0,strlen(R));
+		eeprom_write_byte(0,R[0]);
+		eeprom_write_byte(1,R[1]);
+		eeprom_write_byte(2,R[2]);
+		eeprom_write_byte(3,R[3]);
 	}while (1);
 
 }

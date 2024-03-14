@@ -102,7 +102,7 @@ int main(void)
 	DDRD = 0xF0;
 	TCNT0= 0;
 	TIMSK= 2;
-	OCR0= 50;
+	OCR0= 150;
 	TCCR0= 0b00001101;
 	DDRA=0x00;
 	PORTA = 0xFF;			/* Make ADC port as input */
