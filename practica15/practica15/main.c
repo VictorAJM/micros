@@ -5,7 +5,7 @@
  * Author : victor
  */ 
 
-#define F_CPU 8000000UL			/* Define frequency here its 8MHz */
+#define F_CPU 1000000UL			/* Define frequency here its 8MHz */
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdlib.h>
@@ -22,7 +22,7 @@ void UART_init(long USART_BAUDRATE)
 	UBRRH = (BAUD_PRESCALE >> 8);	/* Load upper 8-bits*/
 }
 
-unsigned char UART_RxChar()
+ char UART_RxChar()
 {
 	while ((UCSRA & (1 << RXC)) == 0);/* Wait till data is received */
 	char ch = UDR;
@@ -35,6 +35,10 @@ int main()
 {
 	lcd_init(LCD_DISP_ON);
 	char c;
+		DDRD = 0;
+		PORTD = 0xFF;
+		DDRB = 0;
+		PORTB = 0;
 	UART_init(4800);
 	while(1)
 	{

@@ -1,0 +1,18 @@
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Códigos\Examen\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\TereLAP\Documents\Universidad\Docencia\MICROPROCESADORES\2016 - Micros II\Juguete\Visual C-Sharp\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache

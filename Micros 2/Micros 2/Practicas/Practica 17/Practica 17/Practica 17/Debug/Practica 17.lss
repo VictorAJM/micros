@@ -1,0 +1,403 @@
+
+Practica 17.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000024a  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000029e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000029e  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002d0  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000c0  00000000  00000000  0000030c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000f46  00000000  00000000  000003cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000084d  00000000  00000000  00001312  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000078c  00000000  00000000  00001b5f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001cc  00000000  00000000  000022ec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000047e  00000000  00000000  000024b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000007ad  00000000  00000000  00002936  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000b0  00000000  00000000  000030e3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <main>
+  64:	0c 94 23 01 	jmp	0x246	; 0x246 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <cero_en_bit>:
+#define BAUD_RATE 9600
+#define UBRR_VALUE ((F_CPU / (16UL * BAUD_RATE)) - 1)
+
+uint8_t cero_en_bit(volatile uint8_t *LUGAR, uint8_t BIT)
+{
+	return (!(*LUGAR&(1<<BIT)));
+  6c:	fc 01       	movw	r30, r24
+  6e:	80 81       	ld	r24, Z
+  70:	90 e0       	ldi	r25, 0x00	; 0
+  72:	02 c0       	rjmp	.+4      	; 0x78 <cero_en_bit+0xc>
+  74:	95 95       	asr	r25
+  76:	87 95       	ror	r24
+  78:	6a 95       	dec	r22
+  7a:	e2 f7       	brpl	.-8      	; 0x74 <cero_en_bit+0x8>
+  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7e:	8f 27       	eor	r24, r31
+}
+  80:	81 70       	andi	r24, 0x01	; 1
+  82:	08 95       	ret
+
+00000084 <Send>:
+
+void Send(uint8_t data) {
+	while (!(UCSRA & (1 << UDRE)));
+  84:	5d 9b       	sbis	0x0b, 5	; 11
+  86:	fe cf       	rjmp	.-4      	; 0x84 <Send>
+	UDR = data;
+  88:	8c b9       	out	0x0c, r24	; 12
+  8a:	08 95       	ret
+
+0000008c <Read>:
+}
+
+uint8_t Read() {
+	while (!(UCSRA & (1<<RXC)));
+  8c:	5f 9b       	sbis	0x0b, 7	; 11
+  8e:	fe cf       	rjmp	.-4      	; 0x8c <Read>
+	return UDR;
+  90:	8c b1       	in	r24, 0x0c	; 12
+}
+  92:	08 95       	ret
+
+00000094 <boton>:
+
+void boton(volatile uint8_t *LUGAR, uint8_t BIT){
+  94:	0f 93       	push	r16
+  96:	1f 93       	push	r17
+  98:	cf 93       	push	r28
+  9a:	8c 01       	movw	r16, r24
+  9c:	c6 2f       	mov	r28, r22
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9e:	2f e7       	ldi	r18, 0x7F	; 127
+  a0:	88 e3       	ldi	r24, 0x38	; 56
+  a2:	91 e0       	ldi	r25, 0x01	; 1
+  a4:	21 50       	subi	r18, 0x01	; 1
+  a6:	80 40       	sbci	r24, 0x00	; 0
+  a8:	90 40       	sbci	r25, 0x00	; 0
+  aa:	e1 f7       	brne	.-8      	; 0xa4 <boton+0x10>
+  ac:	00 c0       	rjmp	.+0      	; 0xae <boton+0x1a>
+  ae:	00 00       	nop
+	_delay_ms(50);
+	while(cero_en_bit(LUGAR,BIT)){}
+  b0:	6c 2f       	mov	r22, r28
+  b2:	c8 01       	movw	r24, r16
+  b4:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+  b8:	81 11       	cpse	r24, r1
+  ba:	fa cf       	rjmp	.-12     	; 0xb0 <boton+0x1c>
+  bc:	2f e7       	ldi	r18, 0x7F	; 127
+  be:	88 e3       	ldi	r24, 0x38	; 56
+  c0:	91 e0       	ldi	r25, 0x01	; 1
+  c2:	21 50       	subi	r18, 0x01	; 1
+  c4:	80 40       	sbci	r24, 0x00	; 0
+  c6:	90 40       	sbci	r25, 0x00	; 0
+  c8:	e1 f7       	brne	.-8      	; 0xc2 <boton+0x2e>
+  ca:	00 c0       	rjmp	.+0      	; 0xcc <boton+0x38>
+  cc:	00 00       	nop
+	_delay_ms(50);
+}
+  ce:	cf 91       	pop	r28
+  d0:	1f 91       	pop	r17
+  d2:	0f 91       	pop	r16
+  d4:	08 95       	ret
+
+000000d6 <Teclado>:
+
+int Teclado(){
+  d6:	cf 93       	push	r28
+  d8:	df 93       	push	r29
+	tec_ddr=0b00001111;
+  da:	8f e0       	ldi	r24, 0x0F	; 15
+  dc:	8a bb       	out	0x1a, r24	; 26
+	int x=-1;
+  de:	cf ef       	ldi	r28, 0xFF	; 255
+  e0:	df ef       	ldi	r29, 0xFF	; 255
+	while(x==-1){
+  e2:	75 c0       	rjmp	.+234    	; 0x1ce <Teclado+0xf8>
+		tec_port= 0b11111110;
+  e4:	8e ef       	ldi	r24, 0xFE	; 254
+  e6:	8b bb       	out	0x1b, r24	; 27
+		if(cero_en_bit(&tec_pin,4))boton(&tec_pin,4),x=1;
+  e8:	64 e0       	ldi	r22, 0x04	; 4
+  ea:	89 e3       	ldi	r24, 0x39	; 57
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+  f2:	88 23       	and	r24, r24
+  f4:	39 f0       	breq	.+14     	; 0x104 <Teclado+0x2e>
+  f6:	64 e0       	ldi	r22, 0x04	; 4
+  f8:	89 e3       	ldi	r24, 0x39	; 57
+  fa:	90 e0       	ldi	r25, 0x00	; 0
+  fc:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 100:	c1 e0       	ldi	r28, 0x01	; 1
+ 102:	d0 e0       	ldi	r29, 0x00	; 0
+		if(cero_en_bit(&tec_pin,5))boton(&tec_pin,5),x=2;
+ 104:	65 e0       	ldi	r22, 0x05	; 5
+ 106:	89 e3       	ldi	r24, 0x39	; 57
+ 108:	90 e0       	ldi	r25, 0x00	; 0
+ 10a:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+ 10e:	88 23       	and	r24, r24
+ 110:	39 f0       	breq	.+14     	; 0x120 <Teclado+0x4a>
+ 112:	65 e0       	ldi	r22, 0x05	; 5
+ 114:	89 e3       	ldi	r24, 0x39	; 57
+ 116:	90 e0       	ldi	r25, 0x00	; 0
+ 118:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 11c:	c2 e0       	ldi	r28, 0x02	; 2
+ 11e:	d0 e0       	ldi	r29, 0x00	; 0
+		if(cero_en_bit(&tec_pin,6))boton(&tec_pin,6),x=3;
+ 120:	66 e0       	ldi	r22, 0x06	; 6
+ 122:	89 e3       	ldi	r24, 0x39	; 57
+ 124:	90 e0       	ldi	r25, 0x00	; 0
+ 126:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+ 12a:	88 23       	and	r24, r24
+ 12c:	39 f0       	breq	.+14     	; 0x13c <Teclado+0x66>
+ 12e:	66 e0       	ldi	r22, 0x06	; 6
+ 130:	89 e3       	ldi	r24, 0x39	; 57
+ 132:	90 e0       	ldi	r25, 0x00	; 0
+ 134:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 138:	c3 e0       	ldi	r28, 0x03	; 3
+ 13a:	d0 e0       	ldi	r29, 0x00	; 0
+		if(x!=-1)break;
+ 13c:	cf 3f       	cpi	r28, 0xFF	; 255
+ 13e:	8f ef       	ldi	r24, 0xFF	; 255
+ 140:	d8 07       	cpc	r29, r24
+ 142:	09 f0       	breq	.+2      	; 0x146 <Teclado+0x70>
+ 144:	49 c0       	rjmp	.+146    	; 0x1d8 <Teclado+0x102>
+		tec_port= 0b11111101;
+ 146:	8d ef       	ldi	r24, 0xFD	; 253
+ 148:	8b bb       	out	0x1b, r24	; 27
+		if(cero_en_bit(&tec_pin,4))boton(&tec_pin,4),x=4;
+ 14a:	64 e0       	ldi	r22, 0x04	; 4
+ 14c:	89 e3       	ldi	r24, 0x39	; 57
+ 14e:	90 e0       	ldi	r25, 0x00	; 0
+ 150:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+ 154:	88 23       	and	r24, r24
+ 156:	39 f0       	breq	.+14     	; 0x166 <Teclado+0x90>
+ 158:	64 e0       	ldi	r22, 0x04	; 4
+ 15a:	89 e3       	ldi	r24, 0x39	; 57
+ 15c:	90 e0       	ldi	r25, 0x00	; 0
+ 15e:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 162:	c4 e0       	ldi	r28, 0x04	; 4
+ 164:	d0 e0       	ldi	r29, 0x00	; 0
+		if(cero_en_bit(&tec_pin,5))boton(&tec_pin,5),x=5;
+ 166:	65 e0       	ldi	r22, 0x05	; 5
+ 168:	89 e3       	ldi	r24, 0x39	; 57
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+ 170:	88 23       	and	r24, r24
+ 172:	39 f0       	breq	.+14     	; 0x182 <Teclado+0xac>
+ 174:	65 e0       	ldi	r22, 0x05	; 5
+ 176:	89 e3       	ldi	r24, 0x39	; 57
+ 178:	90 e0       	ldi	r25, 0x00	; 0
+ 17a:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 17e:	c5 e0       	ldi	r28, 0x05	; 5
+ 180:	d0 e0       	ldi	r29, 0x00	; 0
+		if(cero_en_bit(&tec_pin,6))boton(&tec_pin,6),x=6;
+ 182:	66 e0       	ldi	r22, 0x06	; 6
+ 184:	89 e3       	ldi	r24, 0x39	; 57
+ 186:	90 e0       	ldi	r25, 0x00	; 0
+ 188:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+ 18c:	88 23       	and	r24, r24
+ 18e:	39 f0       	breq	.+14     	; 0x19e <Teclado+0xc8>
+ 190:	66 e0       	ldi	r22, 0x06	; 6
+ 192:	89 e3       	ldi	r24, 0x39	; 57
+ 194:	90 e0       	ldi	r25, 0x00	; 0
+ 196:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 19a:	c6 e0       	ldi	r28, 0x06	; 6
+ 19c:	d0 e0       	ldi	r29, 0x00	; 0
+		if(x!=-1)break;
+ 19e:	cf 3f       	cpi	r28, 0xFF	; 255
+ 1a0:	8f ef       	ldi	r24, 0xFF	; 255
+ 1a2:	d8 07       	cpc	r29, r24
+ 1a4:	c9 f4       	brne	.+50     	; 0x1d8 <Teclado+0x102>
+		tec_port= 0b11111011;
+ 1a6:	8b ef       	ldi	r24, 0xFB	; 251
+ 1a8:	8b bb       	out	0x1b, r24	; 27
+		if(cero_en_bit(&tec_pin,4))boton(&tec_pin,4),x=7;
+ 1aa:	64 e0       	ldi	r22, 0x04	; 4
+ 1ac:	89 e3       	ldi	r24, 0x39	; 57
+ 1ae:	90 e0       	ldi	r25, 0x00	; 0
+ 1b0:	0e 94 36 00 	call	0x6c	; 0x6c <cero_en_bit>
+ 1b4:	88 23       	and	r24, r24
+ 1b6:	39 f0       	breq	.+14     	; 0x1c6 <Teclado+0xf0>
+ 1b8:	64 e0       	ldi	r22, 0x04	; 4
+ 1ba:	89 e3       	ldi	r24, 0x39	; 57
+ 1bc:	90 e0       	ldi	r25, 0x00	; 0
+ 1be:	0e 94 4a 00 	call	0x94	; 0x94 <boton>
+ 1c2:	c7 e0       	ldi	r28, 0x07	; 7
+ 1c4:	d0 e0       	ldi	r29, 0x00	; 0
+		//if(cero_en_bit(&tec_pin,5))boton(&tec_pin,5),x=8;
+		//if(cero_en_bit(&tec_pin,6))boton(&tec_pin,6),x=9;
+		//if(cero_en_bit(&tec_pin,7))boton(&tec_pin,7),x=10;
+		if(x!=-1)break;
+ 1c6:	cf 3f       	cpi	r28, 0xFF	; 255
+ 1c8:	8f ef       	ldi	r24, 0xFF	; 255
+ 1ca:	d8 07       	cpc	r29, r24
+ 1cc:	29 f4       	brne	.+10     	; 0x1d8 <Teclado+0x102>
+}
+
+int Teclado(){
+	tec_ddr=0b00001111;
+	int x=-1;
+	while(x==-1){
+ 1ce:	cf 3f       	cpi	r28, 0xFF	; 255
+ 1d0:	8f ef       	ldi	r24, 0xFF	; 255
+ 1d2:	d8 07       	cpc	r29, r24
+ 1d4:	09 f4       	brne	.+2      	; 0x1d8 <Teclado+0x102>
+ 1d6:	86 cf       	rjmp	.-244    	; 0xe4 <Teclado+0xe>
+		//if(cero_en_bit(&tec_pin,6))boton(&tec_pin,6),x=9;
+		//if(cero_en_bit(&tec_pin,7))boton(&tec_pin,7),x=10;
+		if(x!=-1)break;
+	}
+	return x;
+}
+ 1d8:	ce 01       	movw	r24, r28
+ 1da:	df 91       	pop	r29
+ 1dc:	cf 91       	pop	r28
+ 1de:	08 95       	ret
+
+000001e0 <frq>:
+
+void frq(int fe){
+	OCR0=fe;
+ 1e0:	8c bf       	out	0x3c, r24	; 60
+ 1e2:	08 95       	ret
+
+000001e4 <main>:
+}
+
+int main(void)
+{
+	while(1){
+		sei();
+ 1e4:	78 94       	sei
+		//clc();
+	
+	
+		//timer
+		DDRB |= (1 << 3);
+ 1e6:	87 b3       	in	r24, 0x17	; 23
+ 1e8:	88 60       	ori	r24, 0x08	; 8
+ 1ea:	87 bb       	out	0x17, r24	; 23
+		TCCR0 = 0b00011010;
+ 1ec:	8a e1       	ldi	r24, 0x1A	; 26
+ 1ee:	83 bf       	out	0x33, r24	; 51
+		//Puerto Serial
+		UBRRH = (unsigned char)(UBRR_VALUE >> 8);
+ 1f0:	10 bc       	out	0x20, r1	; 32
+		UBRRL = (unsigned char)UBRR_VALUE;
+ 1f2:	83 e3       	ldi	r24, 0x33	; 51
+ 1f4:	89 b9       	out	0x09, r24	; 9
+		UCSRB = (1 << TXEN) | (1 << RXEN);
+ 1f6:	88 e1       	ldi	r24, 0x18	; 24
+ 1f8:	8a b9       	out	0x0a, r24	; 10
+		UCSRC = (1 << URSEL) | (1 << UCSZ1) | (1 << UCSZ0) | (1 << USBS);
+ 1fa:	8e e8       	ldi	r24, 0x8E	; 142
+ 1fc:	80 bd       	out	0x20, r24	; 32
+		DDRD=0b00000010;
+ 1fe:	82 e0       	ldi	r24, 0x02	; 2
+ 200:	81 bb       	out	0x11, r24	; 17
+	
+		DDRA=0;
+ 202:	1a ba       	out	0x1a, r1	; 26
+		PORTA=255;
+ 204:	8f ef       	ldi	r24, 0xFF	; 255
+ 206:	8b bb       	out	0x1b, r24	; 27
+	
+		//frq(238);
+		
+		while(Teclado()!=7);
+ 208:	0e 94 6b 00 	call	0xd6	; 0xd6 <Teclado>
+ 20c:	07 97       	sbiw	r24, 0x07	; 7
+ 20e:	e1 f7       	brne	.-8      	; 0x208 <__EEPROM_REGION_LENGTH__+0x8>
+		Send(10);
+ 210:	8a e0       	ldi	r24, 0x0A	; 10
+ 212:	0e 94 42 00 	call	0x84	; 0x84 <Send>
+		
+		ini:;
+		frq(0);
+ 216:	80 e0       	ldi	r24, 0x00	; 0
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <frq>
+		
+		while(1){
+			int x=Teclado();
+ 21e:	0e 94 6b 00 	call	0xd6	; 0xd6 <Teclado>
+			Send(x-1);
+ 222:	81 50       	subi	r24, 0x01	; 1
+ 224:	0e 94 42 00 	call	0x84	; 0x84 <Send>
+			int val=Read();
+ 228:	0e 94 46 00 	call	0x8c	; 0x8c <Read>
+ 22c:	c8 2f       	mov	r28, r24
+ 22e:	d0 e0       	ldi	r29, 0x00	; 0
+			if(val<255 && val>1)frq(val);
+ 230:	ce 01       	movw	r24, r28
+ 232:	02 97       	sbiw	r24, 0x02	; 2
+ 234:	8d 3f       	cpi	r24, 0xFD	; 253
+ 236:	91 05       	cpc	r25, r1
+ 238:	18 f4       	brcc	.+6      	; 0x240 <__EEPROM_REGION_LENGTH__+0x40>
+ 23a:	ce 01       	movw	r24, r28
+ 23c:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <frq>
+			if(val==0)goto ini;
+ 240:	cd 2b       	or	r28, r29
+ 242:	69 f7       	brne	.-38     	; 0x21e <__EEPROM_REGION_LENGTH__+0x1e>
+ 244:	e8 cf       	rjmp	.-48     	; 0x216 <__EEPROM_REGION_LENGTH__+0x16>
+
+00000246 <_exit>:
+ 246:	f8 94       	cli
+
+00000248 <__stop_program>:
+ 248:	ff cf       	rjmp	.-2      	; 0x248 <__stop_program>
